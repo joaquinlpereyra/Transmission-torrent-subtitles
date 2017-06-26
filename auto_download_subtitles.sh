@@ -33,14 +33,7 @@ else
   show_help_txt; exit 1
 fi
 
-# Download subtitles
-  # Language of the subtitles - only info I found about filebot languages was this: http://filebot.sourceforge.net/cli.html
-  #LANGUAGE_CODE="en"
-  #LANGUAGE_CODE="de"
-  #LANGUAGE_CODE="fr"
-  LANGUAGE_CODE="es"
-  #LANGUAGE_CODE="ja"
-  #LANGUAGE_CODE="zh"
-
-filebot -r --output srt --lang $LANGUAGE_CODE -get-subtitles "$MOVIES_DIR"
+echo "MOVIES DIR IS: $MOVIES_DIR" >> .subtitles_downloader.log
+filebot -script fn:suball "$MOVIES_DIR" -non-strict --def maxAgeDays=7 >> .subtitles_downloader.log
 exit $?
+
